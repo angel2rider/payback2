@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Payback 2 — Web Port (WebAssembly + WebGPU)</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #0d0f12;
+      color: #e6edf3;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    #game-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #161b22 0%, #090d13 100%);
+    }
+    canvas#game-canvas {
+      width: 100%;
+      height: 100%;
+      max-width: 177.78vh; /* 16:9 ratio */
+      max-height: 56.25vw;
+      background-color: #000;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      image-rendering: auto;
+    }
+    #hud-overlay {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      gap: 8px;
+      pointer-events: none;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+    }
+    .hud-badge {
+      background: rgba(13, 17, 23, 0.85);
+      border: 1px solid rgba(240, 246, 252, 0.1);
+      border-radius: 6px;
+      padding: 4px 8px;
+      backdrop-filter: blur(8px);
+    }
+    .badge-accent {
+      color: #58a6ff;
+      border-color: rgba(56, 139, 253, 0.4);
+    }
+    #loading-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 17, 23, 0.95);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      z-index: 100;
+      transition: opacity 0.4s ease;
+    }
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-top-color: #58a6ff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    #progress-text {
+      font-size: 14px;
+      color: #8b949e;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="game-canvas" width="1920" height="1080"></canvas>
+    
+    <div id="hud-overlay">
+      <div id="api-badge" class="hud-badge badge-accent">WebGPU / WebGL2</div>
+      <div id="fps-badge" class="hud-badge">-- FPS</div>
+      <div id="status-badge" class="hud-badge">Initializing Engine...</div>
+    </div>
+
+    <div id="loading-overlay">
+      <div class="spinner"></div>
+      <h2 style="font-weight: 600;">Payback 2 — Web Port</h2>
+      <p id="progress-text">Preparing WebAssembly & WebGPU pipeline...</p>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# macOS / build noise
+.DS_Store
+__pycache__/
+*.log
+
+# Proprietary PAYBACK 2 game artifacts — keep local, never push
+# (original APK, extracted game files, native game binary, process dumps)
+*.apkm
+extracted_apkm/
+dump/
+oracle_dumps/
+web/engine/libpayback2.so
+PAYBACK2_TEXT_CORPUS.txt
+
+# Build outputs
+port/pbnative
+port/pbnative.dSYM/
+web/node_modules/
+
+# Large screenshots / debug images
+*.png
