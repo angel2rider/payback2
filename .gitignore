@@ -10,6 +10,8 @@ extracted_apkm/
 dump/
 oracle_dumps/
 web/engine/libpayback2.so
+web/assets/
+web/assets
 PAYBACK2_TEXT_CORPUS.txt
 
 # Build outputs
