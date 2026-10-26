@@ -2,7 +2,7 @@ import unittest
 import os
 import subprocess
 
-BASE_DIR = "/Users/thegt/Downloads/payback"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class TestWebPipeline(unittest.TestCase):
     def test_web_index_exists(self):
